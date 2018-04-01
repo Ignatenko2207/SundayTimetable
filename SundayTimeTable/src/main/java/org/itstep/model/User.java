@@ -1,10 +1,13 @@
 package org.itstep.model;
 
+import javax.persistence.MappedSuperclass;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
+@MappedSuperclass
 public class User {
 
 	private String login;
