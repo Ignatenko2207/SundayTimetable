@@ -3,15 +3,11 @@ package org.itstep.model;
 import lombok.Getter;
 
 @Getter
-public enum UserRole {
+public final class UserRole {
 
-	STUDENT("student"),
-	TEACHER("teacher"),
-	ADMIN("admin");
+	final static String
+	STUDENT = "student",
+	TEACHER = "teacher",
+	ADMIN = "admin";
 	
-	private final String role;
-	
-	private UserRole(String role) {
-		this.role = role;
-	}
 }
