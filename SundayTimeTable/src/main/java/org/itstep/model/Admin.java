@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class Admin extends User {
 	
-	private String location;
+	private String location;	
 	
 }
