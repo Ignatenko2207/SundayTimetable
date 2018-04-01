@@ -1,7 +1,7 @@
 package org.itstep.controller;
 
-import org.itstep.model.Lesson;
-import org.itstep.service.LessonService;
+import org.itstep.model.Teacher;
+//import org.itstep.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,39 +14,28 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class LessonController {
+public class TeacherController {
 
 	@Autowired
-	LessonService lessonService;
+	//TeacherService teacherService;
 	
 	@PostMapping( consumes = {MediaType.APPLICATION_JSON_UTF8_VALUE} )
-	ResponseEntity save(@RequestParam Lesson lesson) {
-		if(lessonService.save(lesson) != null) {
-			return new ResponseEntity(HttpStatus.OK);
-		}
+	ResponseEntity save(@RequestParam Teacher teacher) {
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 	
 	@PutMapping( consumes = {MediaType.APPLICATION_JSON_UTF8_VALUE} )
-	ResponseEntity update(@RequestParam Lesson lesson) {
-		if(lessonService.update(lesson) != null) {
-			return new ResponseEntity(HttpStatus.OK);
-		}
+	ResponseEntity update(@RequestParam Teacher teacher) {
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 	
 	@GetMapping( path = "/get-one", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE} )
-	ResponseEntity<Lesson> getOne(@RequestParam Integer id) {
-		Lesson lesson = lessonService.get(id);
-		if( lesson != null) {
-			return new ResponseEntity(lesson, HttpStatus.OK);
-		}
+	ResponseEntity<Teacher> getOne(@RequestParam String login) {
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 	
 	@DeleteMapping
-	ResponseEntity delete(@RequestParam Integer id) {
-		lessonService.delete(id);
+	ResponseEntity delete(@RequestParam String login) {
 		return new ResponseEntity(HttpStatus.OK);
 	}
 }
