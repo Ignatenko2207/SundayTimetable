@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -41,5 +42,11 @@ public class LessonController {
 			return new ResponseEntity(lesson, HttpStatus.OK);
 		}
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
+	}
+	
+	@DeleteMapping
+	ResponseEntity delete(@RequestParam Integer id) {
+		lessonService.delete(id);
+		return new ResponseEntity(HttpStatus.OK);
 	}
 }
