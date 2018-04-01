@@ -7,7 +7,7 @@ public final class UserRole {
 
 	final static String 
 	STUDENT = "student",	
-	TEACHER ="teacher",
+	TEACHER = "teacher",
 	ADMIN = "admin";
 	
 }
