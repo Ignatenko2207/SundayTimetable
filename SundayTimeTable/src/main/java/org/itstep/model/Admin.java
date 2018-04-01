@@ -1,7 +1,12 @@
 package org.itstep.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Admin extends User {
 	
-	public String location;
+	private String location;
 	
 }
