@@ -5,11 +5,12 @@ import java.util.List;
 
 import org.itstep.dao.StudentDAO;
 import org.itstep.model.Student;
+import org.itstep.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudentServiceImpl {
+public class StudentServiceImpl implements StudentService{
 	
 	@Autowired
 	StudentDAO studentDao;
