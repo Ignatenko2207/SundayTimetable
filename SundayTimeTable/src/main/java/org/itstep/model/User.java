@@ -1,7 +1,6 @@
 package org.itstep.model;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -12,7 +11,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@Entity
 @MappedSuperclass
 public class User {
 
