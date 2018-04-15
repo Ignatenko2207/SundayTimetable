@@ -21,43 +21,45 @@ public class LessonController {
 
 	@Autowired
 	LessonService lessonService;
-	
-	@PostMapping( consumes = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE}, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE} )
+
+	@PostMapping(consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
 	ResponseEntity<Lesson> save(@RequestBody Lesson lesson) {
 		Lesson savedLesson = lessonService.save(lesson);
-		if(savedLesson != null) {
+		if (savedLesson != null) {
 			return new ResponseEntity<Lesson>(savedLesson, HttpStatus.OK);
 		}
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
-	
-	@PutMapping( consumes = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE}, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE} )
+
+	@PutMapping(consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
 	ResponseEntity update(@RequestBody Lesson lesson) {
 		Lesson savedLesson = lessonService.update(lesson);
-		if(savedLesson != null) {
+		if (savedLesson != null) {
 			return new ResponseEntity<Lesson>(savedLesson, HttpStatus.OK);
 		}
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
-	
-	@GetMapping( path = "/get-one/{id}", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE} )
+
+	@GetMapping(path = "/get-one/{id}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	ResponseEntity<Lesson> getOne(@RequestParam Integer id) {
 		Lesson lesson = lessonService.get(id);
-		if( lesson != null) {
+		if (lesson != null) {
 			return new ResponseEntity<Lesson>(lesson, HttpStatus.OK);
 		}
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
-	
-	@GetMapping( path = "/get-by-period", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE} )
-	ResponseEntity<List<Lesson>> findAllByStartTime(@RequestBody Long startPeriod, @RequestBody Long endPeriod){
+
+	@GetMapping(path = "/get-by-period", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	ResponseEntity<List<Lesson>> findAllByStartTime(@RequestBody Long startPeriod, @RequestBody Long endPeriod) {
 		List<Lesson> lessons = lessonService.findAllByStartTime(startPeriod, endPeriod);
-		if( lessons != null) {
+		if (lessons != null) {
 			return new ResponseEntity<List<Lesson>>(lessons, HttpStatus.OK);
 		}
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@DeleteMapping
 	ResponseEntity delete(@RequestBody Lesson lesson) {
 		lessonService.delete(lesson);
