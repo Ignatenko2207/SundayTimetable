@@ -34,7 +34,7 @@ public class LessonController {
 
 	@PutMapping(consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	ResponseEntity update(@RequestBody Lesson lesson) {
+	ResponseEntity<Lesson> update(@RequestBody Lesson lesson) {
 		Lesson savedLesson = lessonService.update(lesson);
 		if (savedLesson != null) {
 			return new ResponseEntity<Lesson>(savedLesson, HttpStatus.OK);
