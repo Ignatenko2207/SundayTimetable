@@ -2,7 +2,6 @@ package org.itstep.service;
 
 import java.util.List;
 
-import org.itstep.model.Lesson;
 import org.itstep.model.Student;
 
 public interface StudentService {
@@ -15,5 +14,5 @@ public interface StudentService {
 	
 	List<Student> findAllByGroup(String groupName);
 	
-	void delete(String login);
+	void delete(Student student);
 }
