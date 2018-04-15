@@ -60,7 +60,7 @@ public class LessonController {
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 
-	@DeleteMapping
+	@DeleteMapping (consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	ResponseEntity delete(@RequestBody Lesson lesson) {
 		lessonService.delete(lesson);
 		return new ResponseEntity(HttpStatus.OK);

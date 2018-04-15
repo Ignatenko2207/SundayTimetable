@@ -2,7 +2,6 @@ package org.itstep.controller;
 
 import java.util.List;
 
-import org.itstep.model.Lesson;
 import org.itstep.model.Student;
 import org.itstep.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +52,7 @@ public class StudentController {
 	}
 
 	@GetMapping(path = "/get-by-group", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	ResponseEntity<List<Student>> findAllByGroup(String groupName) {
+	ResponseEntity<List<Student>> findAllByGroup(@RequestBody String groupName) {
 		List<Student> students = studentService.findAllByGroup(groupName);
 		if (students != null) {
 			return new ResponseEntity<List<Student>>(students, HttpStatus.OK);
@@ -61,7 +60,7 @@ public class StudentController {
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 
-	@DeleteMapping
+	@DeleteMapping (consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
 	ResponseEntity delete(@RequestBody Student student) {
 		studentService.delete(student);
 		return new ResponseEntity(HttpStatus.OK);
