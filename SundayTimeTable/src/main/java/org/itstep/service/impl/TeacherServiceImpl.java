@@ -7,20 +7,20 @@ import org.itstep.model.Teacher;
 import org.itstep.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class TeacherServiceImpl implements TeacherService{
+public class TeacherServiceImpl implements TeacherService {
 
 	@Autowired
 	TeacherDAO teacherDao;
-	
+
 	public Teacher save(Teacher teacher) {
-		if(teacherDao.getOne(teacher.getLogin()) == null) {
+		if (teacherDao.getOne(teacher.getLogin()) == null) {
 			return teacherDao.save(teacher);
 		}
 		return null;
 	}
 
 	public Teacher update(Teacher teacher) {
-		if(teacherDao.getOne(teacher.getLogin()) != null) {
+		if (teacherDao.getOne(teacher.getLogin()) != null) {
 			return teacherDao.save(teacher);
 		}
 		return null;
@@ -34,8 +34,8 @@ public class TeacherServiceImpl implements TeacherService{
 		return teacherDao.findAllBySubject(subject);
 	}
 
-	public void delete(String login) {
-		teacherDao.delete(login);		
+	public void delete(Teacher teacher) {
+		teacherDao.delete(teacher);
 	}
 
 }

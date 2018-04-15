@@ -48,8 +48,8 @@ public class SubjectController {
 	}
 
 	@DeleteMapping
-	ResponseEntity delete(@RequestParam String name ) {
-		subjectService.delete(name);
+	ResponseEntity delete(@RequestParam Subject subject ) {
+		subjectService.delete(subject);
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 

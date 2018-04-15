@@ -10,5 +10,5 @@ public interface SubjectService {
 	
 	Subject get(String name);
 	
-	void delete(String name);
+	void delete(Subject subject);
 }

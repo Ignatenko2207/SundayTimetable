@@ -28,8 +28,8 @@ public class SubjectServiceImpl implements SubjectService{
 		return subjectDao.getOne(name);
 	}
 
-	public void delete(String name) {
-		subjectDao.delete(name);
+	public void delete(Subject subject) {
+		subjectDao.delete(subject);
 	}
 
 }

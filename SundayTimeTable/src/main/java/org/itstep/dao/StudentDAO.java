@@ -2,17 +2,83 @@ package org.itstep.dao;
 
 import java.util.List;
 
-import org.itstep.model.Lesson;
+import javax.persistence.Query;
+
+import org.hibernate.Session;
 import org.itstep.model.Student;
-import org.itstep.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.itstep.util.HibernateUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
+public class StudentDAO {
 
+	@Autowired
+	HibernateUtil hiber;
 
-public interface StudentDAO extends JpaRepository<Student, String> {
+	public Student save(Student student) {
 
-	List<Student> findAllByGroup(String groupName);
-	List<Student> findsecondName(String secondName);
+		Session session = hiber.getSessionFactory().openSession();
+
+		session.getTransaction().begin();
+
+		session.saveOrUpdate(student);
+
+		session.getTransaction().commit();
+
+		session.close();
+
+		if (getOne(student.getLogin()) != null) {
+			return student;
+		}
+
+		return null;
+	}
+
+	public Student getOne(String login) {
+
+		Session session = hiber.getSessionFactory().openSession();
+
+		session.getTransaction().begin();
+
+		Student student = session.get(Student.class, login);
+
+		session.getTransaction().commit();
+
+		session.close();
+
+		return student;
+	}
+
+	public void delete(Student student) {
+		
+		Session session = hiber.getSessionFactory().openSession();
+
+		session.getTransaction().begin();
+
+		session.delete(student);
+
+		session.getTransaction().commit();
+
+		session.close();
+	}
+	
+	public List<Student> findAllByGroup(String groupName) {
+
+		Session session = hiber.getSessionFactory().openSession();
+
+		session.getTransaction().begin();
+
+		Query query = session.createNativeQuery("SELECT * FROM STUDENTS WHERE GROUPS_NAME=:group_name", List.class);
+		
+		query.setParameter("group_name", groupName);
+		
+		List<Student> students = query.getResultList();
+				
+		session.getTransaction().commit();
+
+		session.close();
+
+		return students;
+	}
 }
