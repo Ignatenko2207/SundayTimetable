@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(path = "/subject")
@@ -22,7 +21,7 @@ public class SubjectController {
 	@Autowired
 	SubjectService subjectService;
 
-	@PostMapping(consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE }, produces = {
+	@PostMapping(consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
 	ResponseEntity<Subject> save(@RequestBody Subject subject) {
 		Subject savedSubject = subjectService.save(subject);
@@ -32,7 +31,7 @@ public class SubjectController {
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 
-	@PutMapping(consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE }, produces = {
+	@PutMapping(consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
 	ResponseEntity<Subject> update(@RequestBody Subject subject) {
 		Subject savedSubject = subjectService.update(subject);
@@ -51,7 +50,7 @@ public class SubjectController {
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 
-	@DeleteMapping (consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	@DeleteMapping(consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	ResponseEntity delete(@RequestBody Subject subject) {
 		subjectService.delete(subject);
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);

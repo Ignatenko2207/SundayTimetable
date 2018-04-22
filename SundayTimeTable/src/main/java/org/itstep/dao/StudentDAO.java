@@ -69,9 +69,9 @@ public class StudentDAO {
 
 		session.getTransaction().begin();
 
-		Query query = session.createNativeQuery("SELECT * FROM STUDENTS WHERE GROUP_NAME=:group_name", Student.class);
+		Query query = session.createNativeQuery("SELECT * FROM STUDENTS WHERE GROUP_NAME=:name", Student.class);
 		
-		query.setParameter("group_name", groupName);
+		query.setParameter("name", groupName);
 		
 		List<Student> students = query.getResultList();
 				
