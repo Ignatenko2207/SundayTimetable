@@ -46,7 +46,7 @@ public class LessonController {
 	}
 
 	@GetMapping(path = "/get-one", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	ResponseEntity<Lesson> getOne(@RequestBody Integer id) {
+	ResponseEntity<Lesson> getOne(@RequestHeader Integer id) {
 		Lesson lesson = lessonService.get(id);
 		if (lesson != null) {
 			return new ResponseEntity<Lesson>(lesson, HttpStatus.OK);

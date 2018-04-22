@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -45,7 +46,7 @@ public class TeacherController {
 	}
 
 	@GetMapping(path = "/get-one", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	ResponseEntity<Teacher> getOne(@RequestBody String login) {
+	ResponseEntity<Teacher> getOne(@RequestHeader String login) {
 		Teacher savedTeacher = teacherService.get(login);
 		if (savedTeacher != null) {
 			return new ResponseEntity<Teacher>(savedTeacher, HttpStatus.OK);
@@ -54,7 +55,7 @@ public class TeacherController {
 	}
 
 	@GetMapping(path = "/get-by-subject", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	ResponseEntity<List<Teacher>> findAllBySubject(@RequestBody String subject) {
+	ResponseEntity<List<Teacher>> findAllBySubject(@RequestHeader String subject) {
 		List<Teacher> teachers = teacherService.findAllBySubject(subject);
 		if (teachers != null) {
 			return new ResponseEntity<List<Teacher>>(teachers, HttpStatus.OK);

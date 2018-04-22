@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -45,7 +46,7 @@ public class GroupController{
 	}
 	
 	@GetMapping( path = "/get-one",  produces = {MediaType.APPLICATION_JSON_UTF8_VALUE} )
-	ResponseEntity<Lesson> getOne(@RequestBody String name) {
+	ResponseEntity<Lesson> getOne(@RequestHeader String name) {
 		Group group = groupService.get(name);
 		if( group != null) {
 			return new ResponseEntity(group, HttpStatus.OK);
@@ -60,11 +61,11 @@ public class GroupController{
 	}
 	
 	@GetMapping( path = "/get-by-course",  produces = {MediaType.APPLICATION_JSON_UTF8_VALUE} )
-	ResponseEntity<List<Group>> findAllByCourse(@RequestBody String course) {
+	ResponseEntity<List<Group>> findAllByCourse(@RequestHeader String course) {
 		List<Group> groups = groupService.findAllByCourse(course);
 		if( groups != null) {
 			return new ResponseEntity<List<Group>>(groups, HttpStatus.OK);
 		}
-		return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		return new ResponseEntity(HttpStatus.OK);
 	}
 }
