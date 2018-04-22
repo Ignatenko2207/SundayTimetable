@@ -1,6 +1,5 @@
 package org.itstep.controller;
 
-import org.itstep.model.Lesson;
 import org.itstep.model.Subject;
 import org.itstep.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +42,8 @@ public class SubjectController {
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 
-	@GetMapping(path = "/get-one/{name}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	ResponseEntity<Subject> getOne(@RequestParam String name) {
+	@GetMapping(path = "/get-one", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	ResponseEntity<Subject> getOne(@RequestBody String name) {
 		Subject subject = subjectService.get(name);
 		if (subject != null) {
 			return new ResponseEntity<Subject>(subject, HttpStatus.OK);

@@ -44,8 +44,8 @@ public class TeacherController {
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 
-	@GetMapping(path = "/get-one/{login}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	ResponseEntity<Teacher> getOne(@RequestParam String login) {
+	@GetMapping(path = "/get-one", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	ResponseEntity<Teacher> getOne(@RequestBody String login) {
 		Teacher savedTeacher = teacherService.get(login);
 		if (savedTeacher != null) {
 			return new ResponseEntity<Teacher>(savedTeacher, HttpStatus.OK);

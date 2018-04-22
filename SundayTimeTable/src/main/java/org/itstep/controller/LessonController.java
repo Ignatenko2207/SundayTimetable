@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -44,8 +45,8 @@ public class LessonController {
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 
-	@GetMapping(path = "/get-one/{id}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	ResponseEntity<Lesson> getOne(@RequestParam Integer id) {
+	@GetMapping(path = "/get-one", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	ResponseEntity<Lesson> getOne(@RequestBody Integer id) {
 		Lesson lesson = lessonService.get(id);
 		if (lesson != null) {
 			return new ResponseEntity<Lesson>(lesson, HttpStatus.OK);
@@ -54,7 +55,7 @@ public class LessonController {
 	}
 
 	@GetMapping(path = "/get-by-period", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	ResponseEntity<List<Lesson>> findAllByStartTime(@RequestBody Long startPeriod, @RequestBody Long endPeriod) {
+	ResponseEntity<List<Lesson>> findAllByStartTime(@RequestHeader Long startPeriod, @RequestHeader Long endPeriod) {
 		List<Lesson> lessons = lessonService.findAllByStartTime(startPeriod, endPeriod);
 		if (lessons != null) {
 			return new ResponseEntity<List<Lesson>>(lessons, HttpStatus.OK);
